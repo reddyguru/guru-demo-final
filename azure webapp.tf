@@ -38,9 +38,9 @@ resource "azurerm_app_service" "app-service" {
   }
 
   tags = {
-    description = "demo"
-    environment = "pc"
-    project     = "guru"
+     description = "demo"
+     environment = "pc"
+     project     = "guru"
   }
 }
 
