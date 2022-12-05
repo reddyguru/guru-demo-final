@@ -1,0 +1,28 @@
+name: Terraform Apply
+
+On:
+  push:
+   branchs: 
+     - main
+
+jobs:
+  terraform:
+    runs-on-: ubunt-latest
+
+    env:
+      ARM_CLIENT_ID: c5ae5e27-4a53-43d9-a039-c3139bda47d3
+      ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: bc9895bb-5241-4547-a4e3-8620987a04c0
+      ARM_TENANT_ID: 502523fa-a7a4-450d-869d-ca5325f9cc02
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto approve
